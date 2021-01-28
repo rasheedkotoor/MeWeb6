@@ -44,10 +44,14 @@
 	<!-- ajax library  -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-	<!-- jquery validation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js" integrity="sha512-6Uv+497AWTmj/6V14BsQioPrm3kgwmK9HYIyWP+vClykX52b0zrDGP7lajZoIY1nNlX4oQuh7zsGjmF7D0VZYA==" crossorigin="anonymous"></script>
-
+	<style>
+		.error{
+			color: red;
+		}
+		.c1{
+			border: 2px red ridge;
+		}
+	</style>
 </head>
 <!-- body start  -->
 
@@ -92,20 +96,20 @@
                 </div>
 			</div>
 			<div class="choose animate-box col-md-6">
-				<h2>Contact</h2>
+				<h2>Message Me</h2>
 				<!-- form start  -->
 				<form action="" id="submit-form" >
 					<div class="row form-group">
 						<div class="col-md-12">
 							<input type="text" id="fname" name="fname" class="form-control" 
-							required="true" placeholder="Your firstname" 
+							 placeholder="Your firstname" 
                             style="background-color: rgb(54, 54, 54);">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-md-12">
 							<input type="text" id="lname" name="lname" class="form-control" 
-							required="true" placeholder="Your lastname"
+							 placeholder="Your lastname"
                             style="background-color: rgb(54, 54, 54);">
 						</div>
 					</div>
@@ -113,7 +117,7 @@
 					<div class="row form-group">
 						<div class="col-md-12">
 							<input type="email" id="email" name="emailid" class="form-control" 
-							required="true" placeholder="Your email address"
+							 placeholder="Your email address"
                             style="background-color: rgb(54, 54, 54);">
 						</div>
 					</div>
@@ -121,7 +125,7 @@
 					<div class="row form-group">
 						<div class="col-md-12">
 							<input type="text" id="subject" name="message1" class="form-control"
-							required="true" placeholder="Your subject of message"
+							 placeholder="Your subject of message"
                                 style="background-color: rgb(54, 54, 54);">
 						</div>
 					</div>
@@ -129,7 +133,7 @@
 					<div class="row form-group">
 						<div class="col-md-12">
 							<textarea name="message" id="message" name="message2" cols="30" rows="10" class="form-control"
-							required="true" placeholder="Say something about us"
+							required="true" placeholder="Say something about me"
                                 style="background-color: rgb(54, 54, 54);"></textarea>
 						</div>
 					</div>
@@ -171,6 +175,10 @@
 
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
+	<!-- jquery validation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/additional-methods.min.js" integrity="sha512-6Uv+497AWTmj/6V14BsQioPrm3kgwmK9HYIyWP+vClykX52b0zrDGP7lajZoIY1nNlX4oQuh7zsGjmF7D0VZYA==" crossorigin="anonymous"></script>
+
 	<!-- jQuery Easing -->
 	<script src="js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
@@ -191,7 +199,54 @@
 
 	<!-- validation start -->
 	<script>
-		$("#submit-form").submit((event)=>{
+		$(document).ready(function(){
+			$("#submit-form").validate({
+				rules:{
+					fname:{
+						required:true,
+						minlength:3,
+						maxlength:10
+					},
+					lname:{
+						required:true,
+						minlength:2,
+						maxlength:10
+					},
+					emailid:{
+						required:true,
+						email:true
+					},
+					message1:{
+						required:true,
+						minlength:3
+					},
+					message2:{
+						required:true,
+						minlength:10
+					}
+				},
+				highlight:function(element){
+					$(element).addClass("c1");
+				},
+				unhighlight:function(element){
+					$(element).removeClass("c1");
+				},
+				messages:{
+					fname:{
+						required:"Enter Your FirstName"
+					},
+					lname:{
+						required:"Enter Your FirstName"
+					},
+					emailid:{
+						required:"Enter Your Email"
+					}
+				}
+			});
+			$("#submit-form").submit((event)=>{
+				if ($(this).valid()) {  //<<< I was missing this check
+                $("#loading").show();
+            }
 			event.preventDefault();
 			$.ajax({
 				url:"https://script.google.com/macros/s/AKfycbzoVQVCSqJcQ_3pjRkd57sbCYS7vuCBQFeiUHZyzQ/exec",
@@ -205,8 +260,10 @@
 					alert("Something Error")
 				}
 			})
+		});
 		})
 	</script>
+
 	<!-- validation end  -->
 
 </body>
