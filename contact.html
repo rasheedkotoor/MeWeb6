@@ -132,7 +132,7 @@
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<textarea name="message" id="message" name="message2" cols="30" rows="10" class="form-control"
+							<textarea id="message" name="message2" cols="30" rows="10" class="form-control"
 							required="true" placeholder="Say something about me"
                                 style="background-color: rgb(54, 54, 54);"></textarea>
 						</div>
@@ -241,27 +241,32 @@
 					emailid:{
 						required:"Enter Your Email"
 					}
-				}
-			});
-			$("#submit-form").submit((event)=>{
-				if ($(this).valid()) {  //<<< I was missing this check
-                $("#loading").show();
-            }
-			event.preventDefault();
-			$.ajax({
-				url:"https://script.google.com/macros/s/AKfycbzoVQVCSqJcQ_3pjRkd57sbCYS7vuCBQFeiUHZyzQ/exec",
-				data:$("#submit-form").serialize(),
-				method:"post",
-				success:function (response){
-					alert("Form submitted successfully")
-					window.location.reload()
 				},
-				error:function (err){
-					alert("Something Error")
+				submitHandler: function(form) {
+					event.preventDefault();
+					$.ajax({
+					url:"https://script.google.com/macros/s/AKfycbzoVQVCSqJcQ_3pjRkd57sbCYS7vuCBQFeiUHZyzQ/exec",
+					data:$("#submit-form").serialize(),
+					method:"post",
+					success:function (response){
+						alert("Form submitted successfully")
+						window.location.reload()
+						},
+					error:function (err){
+						alert("Something Error")
+						}
+					})
 				}
-			})
+				
+			});
+			// $("#submit-form").submit((event)=>{
+			// 	if ($(this).valid()) {  //<<< I was missing this check
+            //     $("#loading").show();
+			// }
+
+
 		});
-		})
+	
 	</script>
 
 	<!-- validation end  -->
