@@ -11,17 +11,6 @@
 		content="Abdul Rasheed, Kotoor, Software Developer, language specialist, Python Django, Web Developer" />
 	<meta name="author" content="Abdul Rasheed" />
 
-	<!-- Facebook and Twitter integration -->
-	<!-- <meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" /> -->
-
 	<link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 
@@ -70,11 +59,11 @@
                 <li class="litag"><a class="navatag" href="skills.html">Skills</a></li>
                 <li class="litag"><a class="navatag" style="color:#FF9000;" href="contact.html">Contact</a></li>
             </ul>
-            <label for="nav-toggle" class="icon-burger">
+            <!-- <label for="nav-toggle" class="icon-burger">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
-            </label>
+            </label> -->
         </nav>
         <!-- navigation menu end  -->
 
@@ -86,29 +75,30 @@
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                     <h2 style="color: #FF9000; margin-top: 110px;">Contact Me</h2>
                     <h3 style="color: rgb(216, 216, 216);">Residence</h3>
-                    <p>CK Manzil, Kotoor, PO: Kotoor, Muliyar, Kasaragod, Kerala, India. PIN:671542</p>
+                    <p>Kotoor, Muliyar, Kasaragod, Kerala, India. PIN:671542</p>
                     <h3 style="color: rgb(216, 216, 216);">Work</h3>
-                    <p>Symptots, ULCCS IT INFRASTRUCTURE PVT LTD
-                        ULCCS Ltd Special Economic Zone,
-                        Nellikode(PO), Kozhikode(Calicut),
-                        Kerala, India-673016</p>
-
+                    <p> Sequoia Applied Technologies
+                        3rd Floor, Jos Anex Building
+                        Jos Junction, MG Road,
+                        Kochi
+						Kerala, India, 682015
+					</p>
                 </div>
 			</div>
 			<div class="choose animate-box col-md-6">
 				<h2>Message Me</h2>
 				<!-- form start  -->
-				<form action="" id="submit-form" >
+				<form action="" id="submit-form" method="post" name="contact-form">
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="text" id="fname" name="fname" class="form-control" 
+							<input type="text" id="first_name" name="first_name" class="form-control" 
 							 placeholder="Your firstname" 
                             style="background-color: rgb(54, 54, 54);">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="text" id="lname" name="lname" class="form-control" 
+							<input type="text" id="last_name" name="last_name" class="form-control" 
 							 placeholder="Your lastname"
                             style="background-color: rgb(54, 54, 54);">
 						</div>
@@ -116,7 +106,7 @@
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="email" id="email" name="emailid" class="form-control" 
+							<input type="email" id="email_id" name="email_id" class="form-control" 
 							 placeholder="Your email address"
                             style="background-color: rgb(54, 54, 54);">
 						</div>
@@ -124,7 +114,7 @@
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<input type="text" id="subject" name="message1" class="form-control"
+							<input type="text" id="subject" name="message_subject" class="form-control"
 							 placeholder="Your subject of message"
                                 style="background-color: rgb(54, 54, 54);">
 						</div>
@@ -132,7 +122,7 @@
 
 					<div class="row form-group">
 						<div class="col-md-12">
-							<textarea id="message" name="message2" cols="30" rows="10" class="form-control"
+							<textarea id="message" name="message" cols="30" rows="10" class="form-control"
 							required="true" placeholder="Say something about me"
                                 style="background-color: rgb(54, 54, 54);"></textarea>
 						</div>
@@ -189,84 +179,75 @@
 	<script src="js/jquery.stellar.min.js"></script>
 	<!-- Easy PieChart -->
 	<script src="js/jquery.easypiechart.min.js"></script>
-	<!-- Google Map -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-	<script src="js/google_map.js"></script>
 
 	<!-- Main -->
 	<script src="js/main.js"></script>
 
 	<!-- validation start -->
 	<script>
-		$(document).ready(function(){
+		$(document).ready(function () {
 			$("#submit-form").validate({
-				rules:{
-					fname:{
-						required:true,
-						minlength:3,
-						maxlength:10
+				rules: {
+					first_name: {
+						required: true,
+						minlength: 3,
+						maxlength: 10
 					},
-					lname:{
-						required:true,
-						minlength:2,
-						maxlength:10
+					last_name: {
+						required: true,
+						minlength: 2,
+						maxlength: 10
 					},
-					emailid:{
-						required:true,
-						email:true
+					email_id: {
+						required: true,
+						email: true
 					},
-					message1:{
-						required:true,
-						minlength:3
+					message_subject: {
+						required: true,
+						minlength: 3
 					},
-					message2:{
-						required:true,
-						minlength:10
+					message: {
+						required: true,
+						minlength: 10
 					}
 				},
-				highlight:function(element){
+				highlight: function (element) {
 					$(element).addClass("c1");
 				},
-				unhighlight:function(element){
+				unhighlight: function (element) {
 					$(element).removeClass("c1");
 				},
-				messages:{
-					fname:{
-						required:"Enter Your FirstName"
+				messages: {
+					first_name: {
+						required: "Enter Your First Name"
 					},
-					lname:{
-						required:"Enter Your FirstName"
+					last_name: {
+						required: "Enter Your Last Name"
 					},
-					emailid:{
-						required:"Enter Your Email"
+					email_id: {
+						required: "Enter Your Email",
+						email: "Enter a valid email address"
 					}
 				},
-				submitHandler: function(form) {
-					event.preventDefault();
-					$.ajax({
-					url:"https://script.google.com/macros/s/AKfycbzoVQVCSqJcQ_3pjRkd57sbCYS7vuCBQFeiUHZyzQ/exec",
-					data:$("#submit-form").serialize(),
-					method:"post",
-					success:function (response){
-						alert("Form submitted successfully")
-						window.location.reload()
-						},
-					error:function (err){
-						alert("Something Error")
-						}
-					})
-				}
-				
-			});
-			// $("#submit-form").submit((event)=>{
-			// 	if ($(this).valid()) {  //<<< I was missing this check
-            //     $("#loading").show();
-			// }
-
-
-		});
+				submitHandler: function (form, event) {
+					event.preventDefault(); // Prevent default form submission
 	
+					$.ajax({
+						url: "https://script.google.com/macros/s/AKfycbzIqeJJ0Vmm9mqlyf_rxD9XLtTenUc8Q18mSnyuHQpLSyK4VgGpaMxKrmmlr8RJL_7Q/exec",
+						data: $("#submit-form").serialize(),
+						method: "POST",
+						success: function (response) {
+							alert("Form submitted successfully!");
+							$("#submit-form")[0].reset(); // Reset the form
+						},
+						error: function (err) {
+							console.error(err);
+							alert("An error occurred. Please try again.");
+						}
+					});
+				}
+			});
+		});
 	</script>
 
 	<!-- validation end  -->
